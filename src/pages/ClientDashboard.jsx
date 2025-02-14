@@ -5,9 +5,14 @@ import { fetchBusinessServices, bookService } from "../store/clientSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getClientProfile } from "../store/getClientProfile";
+import { logout } from "../store/authSlice";
+import api from "../services/api.js"
+import { useNavigate } from "react-router-dom";
+import { BsArrowReturnLeft } from "react-icons/bs";
 
 const ClientDashboard = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { services, status, error } = useSelector((state) => state.client);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -27,7 +32,8 @@ const ClientDashboard = () => {
     // get profile as well
     const getprofile = async () => {
       let profile = await dispatch(getClientProfile());
-      if (profile.data.data == null) {
+      console.log("Profile", profile);
+      if (profile.payload == null) {
         // redirect to profile page
         toast("Please complete your profile to continue.", {
           position: "top-center",
@@ -68,6 +74,13 @@ const ClientDashboard = () => {
     }
   };
 
+  const handleLogout = async () => {
+      await api.post("/api/auth/logout");
+      localStorage.removeItem("jwt");
+      navigate("/");
+      dispatch(logout());
+  }
+
   return (
     <div className="min-h-screen bg-[#f5f6fa] text-gray-900 flex">
       {/* Sidebar */}
@@ -77,6 +90,9 @@ const ClientDashboard = () => {
           <Link to="/client-dashboard" className="block p-3 rounded-md text-gray-700 hover:bg-gray-200">🏠 Overview</Link>
           <Link to="/client-bookings" className="block p-3 rounded-md text-gray-700 hover:bg-gray-200">📅 My Bookings</Link>
           <Link to="/client-profile" className="block p-3 rounded-md text-gray-700 hover:bg-gray-200">👤 Profile</Link>
+          <Link to="#" onClick={handleLogout} className="block p-3 rounded-md text-gray-700 hover:bg-gray-200">
+            <div className="flex items-center "><BsArrowReturnLeft className="mr-2" /> <span>Logout</span></div>
+          </Link>
         </nav>
       </div>
 

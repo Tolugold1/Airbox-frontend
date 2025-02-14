@@ -6,9 +6,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { createClientProfile } from "../store/createClientProfile";
 import { getClientProfile } from "../store/getClientProfile";
 import api from "../services/api";
+import { BsArrowReturnLeft } from "react-icons/bs";
+import { logout } from "../store/authSlice";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ClientProfilePage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { clientProfile, status, error } = useSelector((state) => state.getClientProfile);
   const [formData, setFormData] = useState({
     Fullname: "",
@@ -63,15 +68,26 @@ const ClientProfilePage = () => {
     }
   };
 
+  const handleLogout = async () => {
+    await api.post("/api/auth/logout");
+    localStorage.removeItem("jwt");
+    navigate("/");
+    dispatch(logout());
+  }
+
+
   return (
     <div className="min-h-screen bg-[#f5f6fa] text-gray-900 flex">
       {/* Sidebar */}
       <div className="w-64 bg-white p-6 shadow-lg">
         <h2 className="text-xl font-bold text-purple-600">Client Dashboard</h2>
         <nav className="mt-6">
-          <a href="/client-dashboard" className="block p-3 rounded-md text-gray-700 hover:bg-gray-200">🏠 Overview</a>
-          <a href="/client-bookings" className="block p-3 rounded-md text-gray-700 hover:bg-gray-200">📅 My Bookings</a>
-          <a href="/client-profile" className="block p-3 rounded-md text-gray-700 hover:bg-gray-200">👤 Profile</a>
+          <Link to="/client-dashboard" className="block p-3 rounded-md text-gray-700 hover:bg-gray-200">🏠 Overview</Link>
+          <Link to="/client-bookings" className="block p-3 rounded-md text-gray-700 hover:bg-gray-200">📅 My Bookings</Link>
+          <Link to="/client-profile" className="block p-3 rounded-md text-gray-700 hover:bg-gray-200">👤 Profile</Link>
+          <Link to="#" onClick={handleLogout} className="block p-3 rounded-md text-gray-700 hover:bg-gray-200">
+            <div className="flex items-center "><BsArrowReturnLeft className="mr-2" /> <span>Logout</span></div>
+          </Link>
         </nav>
       </div>
 

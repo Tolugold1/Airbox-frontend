@@ -13,7 +13,8 @@ const BusinessSideBar = () => {
     const dispatch = useDispatch();
     let path = window.location.pathname;
     const onLogout = async () => {
-        await api.post("/api/auth/logout")
+        await api.post("/api/auth/logout");
+        localStorage.removeItem("jwt");
         navigate("/");
         dispatch(logout());
     }

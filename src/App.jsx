@@ -12,6 +12,7 @@ import ServicePage from './pages/BusinessServicePage';
 import ClientProfilePage from "./pages/clientProfile";
 import BusinessHOC from './layout/businessHOC';
 import BusinessProfilePage from "./pages/businessProfile";
+import HistoryPage from "./pages/clientHistory";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route element={<ProtectedRoute requiredRole="Client" />}>
           <Route path="/client-dashboard" element={<ClientDashboard />} />
           <Route path="/client-profile" element={<ClientProfilePage />} />
+          <Route path="/client-bookings" element={<HistoryPage />} />
         </Route>
       </Routes>
     </div>

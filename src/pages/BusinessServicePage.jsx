@@ -42,8 +42,8 @@ const ServicePage = () => {
         const response = await dispatch(getBusinessBookingItem(businessProfile?._id)); // ✅ Adjust API endpoint if necessary
         console.log("response", response);
         console.log("items", items);
-        if (Array.isArray(items)) {
-          setServices(items);
+        if (Array.isArray(response.payload)) {
+          setServices(response.payload);
         } else {
           console.error("Unexpected API response:", items);
           setServices([]); // ✅ Ensure services is always an array
@@ -210,7 +210,7 @@ const ServicePage = () => {
           <p className="text-gray-400">No services added yet.</p>
         ) : (
           <div className="vsm:grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {items.map((service) => (
+            {services.map((service) => (
               <div key={service._id} className="bg-[#1a1a2e] p-4 rounded-lg shadow-md">
                 <h3 className="text-lg font-semibold">{service.name}</h3>
                 <p className="text-gray-400 text-sm">{service.description}</p>

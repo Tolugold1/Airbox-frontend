@@ -5,13 +5,13 @@ import api from '../services/api';
 
 // Async thunk for logging in the user
 export const getClientBookingItem = createAsyncThunk(
-  'get/bookingItem',
+  'get/client/bookingItem',
   async (credentials, thunkAPI) => {
     try {
         // Adjust the API endpoint as needed.
-        const response = await api.get('/api/booking/get-client-bookings', credentials);
+        const response = await api.get(`/api/booking/get-client-bookings/${credentials}` );
         // Assume your backend returns an object with { user, token }
-        return response.data.data;
+        return response.data.data.customerBookings;
     } catch (error) {
         console.log('Login error:', error);
         return thunkAPI.rejectWithValue(error.response.data.message || error.response.data.status);

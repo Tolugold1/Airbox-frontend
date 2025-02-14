@@ -42,7 +42,9 @@ const BusinessDashboard = () => {
   let businessBooking  = useSelector((state) => state.getBusinessBooking);
 
   useEffect(() => {
-    dispatch(getBusinessAnalytics({businessId: businessProfile?._id, timeframe: period}));
+    if (businessProfile !== null) {
+      dispatch(getBusinessAnalytics({businessId: businessProfile?._id, timeframe: period}));
+    }
   }, [period])
 
   useEffect(() => {
@@ -65,28 +67,36 @@ const BusinessDashboard = () => {
         console.error('Error fetching dashboard data:', error);
       }
     };
-    fetchData();
+    
+    if (businessProfile == null) {
+      fetchData();
+    }
   }, []);
 
   useEffect(() => {
     // const itemsResponse = await api.get('/api/booking/get-business-bookings');
     const getAllNecessaryThing = async () => {
-      const itemsResponse = await dispatch(getBusinessBooking(businessProfile?._id));
+      const [ itemsResponse, analyticsResponse] = await Promise.all([
+        dispatch(getBusinessBooking(businessProfile?._id)), 
+        dispatch(getBusinessAnalytics({businessId: businessProfile?._id, timeframe: period}))
+      ]);
       console.log("bookableItems", itemsResponse);
       setBookableItems(itemsResponse.data);
   
-      if (businessProfile) {
-        const analyticsResponse = await dispatch(getBusinessAnalytics({businessId: businessProfile?._id, timeframe: period}));
-        setAnalytics(analyticsResponse.payload.formattedData);
-      }
+      // const analyticsResponse = await dispatch(getBusinessAnalytics({businessId: businessProfile?._id, timeframe: period}));
+      setAnalytics(analyticsResponse.payload.formattedData);
+
+      console.log("analyticsStore", analyticsStore);
   
-      setSchedule(analyticsStore.analytics.overallAnalytics?.TotalScheduledBooking);
+      setSchedule(analyticsResponse.payload.overallAnalytics?.TotalScheduledBooking);
   
-      setCancel(analyticsStore.analytics.overallAnalytics?.TotalCancelledBooking);
+      setCancel(analyticsResponse.payload.overallAnalytics?.TotalCancelledBooking);
   
-      setComplete(analyticsStore.analytics.overallAnalytics?.TotalCompletedBooking);
+      setComplete(analyticsResponse.payload.overallAnalytics?.TotalCompletedBooking);
     }
-    getAllNecessaryThing();
+    if (businessProfile !== null) {
+      getAllNecessaryThing();
+    }
   }, [businessProfile]);
 
   // Handler to add a new bookable item
@@ -187,6 +197,18 @@ const BusinessDashboard = () => {
   };
    console.log("businessBooking", businessBooking.businessBookings);
    businessBooking = businessBooking.businessBookings;
+
+   const formatData = (isoDate) => {
+    const dateObj = new Date(isoDate);
+  
+    // Format to display "February 24"
+    const formattedDate = dateObj.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric"
+    });
+    return formattedDate;
+  }
+  
   return (
     <div className="flex min-h-screen bg-gray-100 w-full">
       {/* Sidebar */}
@@ -280,7 +302,7 @@ const BusinessDashboard = () => {
                 return (
                   <tr className="border-b border-gray-200 hover:bg-gray-100">
                     <td className="py-3 px-6 text-left">{booking.clientProfileId.Fullname}</td>
-                    <td className="py-3 px-6 text-left">{booking.appointmentDate}</td>
+                    <td className="py-3 px-6 text-left">{formatData(booking.appointmentDate)}</td>
                     <td className="py-3 px-6 text-left text-green-500">{booking.status}</td>
                     <td className="py-3 px-6 text-left">{booking.bookedItemId.name}</td>
                     {/* <td className="py-3 px-6 text-left">{booking.paymentMethod}</td> */}
