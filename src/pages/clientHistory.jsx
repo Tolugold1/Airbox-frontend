@@ -41,7 +41,7 @@ const formatData = (isoDate) => {
 console.log("Bookings", clientBooking)
 
   return (
-    <div className="min-h-screen bg-[#f5f6fa] text-gray-900 flex">
+    <div className="min-h-screen bg-[#f5f6fa] text-gray-900 flex w-full">
       <div className="w-64 bg-white p-6 shadow-lg">
         <h2 className="text-xl font-bold text-purple-600">Client Dashboard</h2>
         <nav className="mt-6">

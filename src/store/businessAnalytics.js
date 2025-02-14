@@ -9,7 +9,7 @@ export const getBusinessAnalytics = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
         // Adjust the API endpoint as needed.
-        const response = await api.get(`/api/businessAnalytics/get-analytics/${credentials.businessId}/${credentials.timeframe}`);
+        const response = await axios.get(`/api/businessAnalytics/get-analytics/${credentials.businessId}/${credentials.timeframe}`, her);
         // Assume your backend returns an object with { user, token }
         return response.data.data;
     } catch (error) {
