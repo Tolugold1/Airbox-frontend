@@ -41,11 +41,11 @@ const LoginPage = () => {
   }, []);
 
   useEffect(() => {
-    if (acctType == "Official" && status == "succeeded" && token !== null) {
-      navigate('/business-dashboard');
-    } else if (acctType == "Client" && status == "succeeded" && token !== null) {
-      navigate('/client-dashboard');
-    }
+    // if (acctType == "Official" && status == "succeeded" && token !== null) {
+    //   navigate('/business-dashboard');
+    // } else if (acctType == "Client" && status == "succeeded" && token !== null) {
+    //   navigate('/client-dashboard');
+    // }
   }, [acctType, status, token]);
 
   console.log("error", error);
