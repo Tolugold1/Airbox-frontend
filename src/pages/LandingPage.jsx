@@ -44,9 +44,9 @@ const LandingPage = () => {
       {/* Hero Section */}
       <section className="flex flex-col md:flex-row items-center px-10 py-20">
         <div className="md:w-1/2">
-          <h2 className="font-bold leading-tight vsm:text-6xl lg:text-7xl">Delivering IT solutions that enable you to work smarter.</h2>
+          <h2 className="font-bold leading-tight vsm:text-6xl lg:text-7xl">Manage bookings, streamline appointments, and grow your business with Schedulo</h2>
           <p className="mt-4 text-gray-1400">
-            Discover powerful digital solutions with our expert team. Transform your online presence and grow your business.
+          The all-in-one scheduling platform for businesses and clients.
           </p>
           {/* <Link to="/services" className="mt-6 inline-block bg-pink-500 px-6 py-3 rounded text-lg hover:bg-pink-600">
             Discover More
@@ -106,19 +106,19 @@ const LandingPage = () => {
 
       {/* How It Works */}
       <section className="px-10 py-16 text-center">
-        <h2 className="text-3xl font-bold">Unlock Astonishing Results in 3 Steps</h2>
+        <h2 className="text-3xl font-bold">Select your use case</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
           <div className="bg-[#29293f] p-6 rounded shadow">
-            <h3 className="text-xl font-semibold">📞 Free Consultation</h3>
-            <p className="mt-2 text-gray-400">Discuss your needs and get expert advice.</p>
+            <h3 className="text-xl font-semibold">Business</h3>
+            <p className="mt-2 text-gray-400">Create a profile and start posting your booking items for other userd to see and book an appointment.</p>
           </div>
           <div className="bg-[#29293f] p-6 rounded shadow">
-            <h3 className="text-xl font-semibold">🎯 Discover Solutions</h3>
-            <p className="mt-2 text-gray-400">Choose the best digital strategy tailored to you.</p>
+            <h3 className="text-xl font-semibold">Client</h3>
+            <p className="mt-2 text-gray-400">Create profile and see all booking items available and book for he ones you need.</p>
           </div>
           <div className="bg-[#29293f] p-6 rounded shadow">
             <h3 className="text-xl font-semibold">🚀 Execute & Grow</h3>
-            <p className="mt-2 text-gray-400">We implement and optimize for maximum success.</p>
+            <p className="mt-2 text-gray-400">Grow your business and make an easy booking seamlessly.</p>
           </div>
         </div>
       </section>
@@ -157,12 +157,12 @@ const LandingPage = () => {
       {/* Footer */}
       <footer className="px-10 py-10 bg-[#121221] text-center">
         <h2 className="text-2xl font-bold text-pink-500">Schedulo</h2>
-        <p className="mt-2 text-gray-400">Transforming Ideas into Digital Excellence.</p>
+        <p className="mt-2 text-gray-400">Effortless Booking, Anytime, Anywhere!</p>
         <div className="mt-4 space-x-4">
           <Link to="/privacy-policy" className="hover:text-pink-400">Privacy Policy</Link>
           <Link to="/terms" className="hover:text-pink-400">Terms of Use</Link>
         </div>
-        <p className="mt-4 text-gray-500">© 2024 Schedulo. All Rights Reserved.</p>
+        <p className="mt-4 text-gray-500">© 2025 Schedulo. All Rights Reserved.</p>
       </footer>
     </div>
   );
