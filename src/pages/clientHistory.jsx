@@ -45,9 +45,9 @@ console.log("Bookings", clientBooking)
       <div className="w-20 md:w-64 bg-white p-6 shadow-lg">
         <h2 className="text-xl font-bold text-purple-600">Client Dashboard</h2>
         <nav className="mt-6">
-          <Link to="/client-dashboard" className="block p-3 rounded-md text-gray-700 hover:bg-gray-200">🏠 <span className="hidden md:flex">Overview</span></Link>
-          <Link to="/client-bookings" className="block p-3 rounded-md text-gray-700 hover:bg-gray-200">📅 <span className="hidden md:flex">My Bookings</span></Link>
-          <Link to="/client-profile" className="block p-3 rounded-md text-gray-700 hover:bg-gray-200">👤 <span className="hidden md:flex">Profile</span></Link>
+          <Link to="/client-dashboard" className="block p-3 rounded-md text-gray-700 hover:bg-gray-200"><span>🏠</span> <span className="hidden md:flex">Overview</span></Link>
+          <Link to="/client-bookings" className="block p-3 rounded-md text-gray-700 hover:bg-gray-200"><span>📅</span> <span className="hidden md:flex">My Bookings</span></Link>
+          <Link to="/client-profile" className="block p-3 rounded-md text-gray-700 hover:bg-gray-200"><span>👤</span> <span className="hidden md:flex">Profile</span></Link>
           <Link to="#" onClick={handleLogout} className="block p-3 rounded-md text-gray-700 hover:bg-gray-200">
             <div className="flex items-center "><BsArrowReturnLeft className="mr-2 w-[50px] h-[25px]" /> <span className="hidden md:flex">Logout</span></div>
           </Link>
