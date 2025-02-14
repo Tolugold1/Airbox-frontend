@@ -21,7 +21,7 @@ const api = axios.create({
 // Request interceptor to attach the auth token
 api.interceptors.request.use(
     (config) => {
-        const token = getCookie('token'); // Assuming your backend stores a token cookie named 'token'
+        const token = getCookie('jwt'); // Assuming your backend stores a token cookie named 'token'
         if (token) {
           // If your API requires an Authorization header, attach it.
           config.headers.Authorization = `Bearer ${token}`;
