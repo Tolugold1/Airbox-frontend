@@ -11,5 +11,6 @@ export default defineConfig({
         '.jsx': 'jsx'
       }
     }
-  }
+  },
+  base: '/', // Ensure this is set correctly for Netlify
 })
