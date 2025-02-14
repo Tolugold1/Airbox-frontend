@@ -1,1 +1,1 @@
-export const backend_url = 'https://airboc-backend.onrender.com';
+export const backend_url = 'https://airboc-backend.vercel.app/';
