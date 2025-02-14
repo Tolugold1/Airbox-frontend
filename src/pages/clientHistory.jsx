@@ -76,9 +76,9 @@ console.log("Bookings", clientBooking)
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
           {clientBooking?.map((booking) => (
             <div key={booking._id} className="bg-white p-4 rounded-lg shadow-lg">
-              <h2 className="text-lg font-bold">{booking.bookedItemId.name}</h2>
-              <p className="text-gray-600">Date: {formatData(booking.appointmentDate)}</p>
-              <p><strong>Status:</strong> {booking.status}</p>
+              <h2 className="text-lg font-bold">{booking?.bookedItemId?.name}</h2>
+              <p className="text-gray-600">Date: {formatData(booking?.appointmentDate)}</p>
+              <p><strong>Status:</strong> {booking?.status}</p>
             </div>
           ))}
         </div>
