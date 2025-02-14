@@ -44,7 +44,7 @@ const LandingPage = () => {
       {/* Hero Section */}
       <section className="flex flex-col md:flex-row items-center px-10 py-20">
         <div className="md:w-1/2">
-          <h2 className="font-bold leading-tight vsm:text-6xl lg:text-7xl">Manage bookings, streamline appointments, and grow your business with Schedulo</h2>
+          <h2 className="font-bold leading-tight vsm:text-6xl lg:text-7xl">Manage bookings, streamline appointments with Schedulo</h2>
           <p className="mt-4 text-gray-1400">
           The all-in-one scheduling platform for businesses and clients.
           </p>
