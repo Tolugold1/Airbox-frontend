@@ -13,9 +13,7 @@ import { clearBusinessprofile } from "../store/getBusinessProfile";
 import { clearBusinessBooking } from "../store/getBusinessBookings";
 import { clearBusinessBookingItem } from "../store/getBusinessBookingItems";
 import { clearAnalytics } from "../store/businessAnalytics";
-import { loginUserOAuth, clearOAuthMessage } from "../store/goggleOauth";
 import { logout } from "../store/authSlice";
-import { logoutGoogle } from "../store/goggleOauth";
 
 const LoginPage = () => {
   const {
@@ -33,7 +31,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     dispatch(logout());
-    dispatch(logoutGoogle());
+    // dispatch(logoutGoogle());
     dispatch(clearClientprofile());
     dispatch(clearClientBookingItem());
     dispatch(clearAnalytics());
@@ -43,9 +41,9 @@ const LoginPage = () => {
   }, []);
 
   useEffect(() => {
-    if (acctType == "Official" && status == "Sign in successful" && token !== null) {
+    if (acctType == "Official" && status == "succeeded" && token !== null) {
       navigate('/business-dashboard');
-    } else if (acctType == "Client" && status == "Sign in successful" && token !== null) {
+    } else if (acctType == "Client" && status == "succeeded" && token !== null) {
       navigate('/client-dashboard');
     }
   }, [acctType, status, token]);
@@ -60,36 +58,8 @@ const LoginPage = () => {
       }, 50);
       dispatch(clearAuthMessage());
     }
-
-    if (google.error) {
-      setTimeout(() => {
-        toast.error(error, {
-          position: "top-center",
-        });
-      }, 50);
-      dispatch(clearOAuthMessage());
-    }
   }, [error]);
 
-  const handleGoogleSignIn = async () => {
-    try {
-      if (acctTypeT == null) {
-        toast("Please select the account type you would like to log in to", {
-          position: "top-center"
-        })
-      } else {
-        if (acctTypeT == "Official") {
-          await dispatch(loginUserOAuth("Official"));
-        } else {
-          await dispatch(loginUserOAuth("Client"));
-        }
-      }
-    } catch (error) {
-      console.error('Error during Google sign-in:', error)
-      // dispatch the error
-
-    }
-  }
   console.log("acctType", acctType);
 
   const onSubmit = async (data) => {

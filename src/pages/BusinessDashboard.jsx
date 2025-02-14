@@ -61,28 +61,33 @@ const BusinessDashboard = () => {
         }
         setProfile(profileResponse.data);
 
-        // const itemsResponse = await api.get('/api/booking/get-business-bookings');
-        const itemsResponse = await dispatch(getBusinessBooking(businessProfile?._id));
-        console.log("bookableItems", itemsResponse);
-        setBookableItems(itemsResponse.data);
-
-        if (businessProfile) {
-          const analyticsResponse = await dispatch(getBusinessAnalytics({businessId: businessProfile?._id, timeframe: period}));
-          setAnalytics(analyticsResponse.payload.formattedData);
-        }
-
-        setSchedule(analyticsStore.analytics.overallAnalytics?.TotalScheduledBooking);
-
-        setCancel(analyticsStore.analytics.overallAnalytics?.TotalCancelledBooking);
-
-        setComplete(analyticsStore.analytics.overallAnalytics?.TotalCompletedBooking);
-
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
       }
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    // const itemsResponse = await api.get('/api/booking/get-business-bookings');
+    const getAllNecessaryThing = async () => {
+      const itemsResponse = await dispatch(getBusinessBooking(businessProfile?._id));
+      console.log("bookableItems", itemsResponse);
+      setBookableItems(itemsResponse.data);
+  
+      if (businessProfile) {
+        const analyticsResponse = await dispatch(getBusinessAnalytics({businessId: businessProfile?._id, timeframe: period}));
+        setAnalytics(analyticsResponse.payload.formattedData);
+      }
+  
+      setSchedule(analyticsStore.analytics.overallAnalytics?.TotalScheduledBooking);
+  
+      setCancel(analyticsStore.analytics.overallAnalytics?.TotalCancelledBooking);
+  
+      setComplete(analyticsStore.analytics.overallAnalytics?.TotalCompletedBooking);
+    }
+    getAllNecessaryThing();
+  }, [businessProfile]);
 
   // Handler to add a new bookable item
   const onAddItem = async (data) => {
