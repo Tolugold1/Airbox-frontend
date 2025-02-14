@@ -9,6 +9,10 @@ import { logout } from "../store/authSlice";
 import api from "../services/api.js"
 import { useNavigate } from "react-router-dom";
 import { BsArrowReturnLeft } from "react-icons/bs";
+import { FaHome } from "react-icons/fa";
+import { SlCalender } from "react-icons/sl";
+import { IoPersonSharp } from "react-icons/io5";
+
 
 const ClientDashboard = () => {
   const dispatch = useDispatch();
@@ -85,12 +89,12 @@ const ClientDashboard = () => {
     <div className="min-h-screen bg-[#f5f6fa] text-gray-900 flex">
       {/* Sidebar */}
       <div className="w-20 md:w-64 bg-white p-6 shadow-lg">
-        <h2 className="text-xl font-bold text-purple-600">Client Dashboard</h2>
+        <h2 className="hidden sm:flex text-xl font-bold text-purple-600">Client Dashboard</h2>
         <nav className="mt-6">
-          <Link to="/client-dashboard" className="block p-3 rounded-md text-gray-700 hover:bg-gray-200"><span>🏠</span> <span className="hidden md:flex">Overview</span></Link>
-          <Link to="/client-bookings" className="block p-3 rounded-md text-gray-700 hover:bg-gray-200"><span>📅</span> <span className="hidden md:flex">My Bookings</span></Link>
-          <Link to="/client-profile" className="block p-3 rounded-md text-gray-700 hover:bg-gray-200"><span>👤</span> <span className="hidden md:flex">Profile</span></Link>
-          <Link to="#" onClick={handleLogout} className="block p-3 rounded-md text-gray-700 hover:bg-gray-200">
+          <Link to="/client-dashboard" className="flex p-3 rounded-md text-gray-700 hover:bg-gray-200"><FaHome className="mr-2 w-[50px] h-[25px]"  /> <span className="hidden md:flex">Overview</span></Link>
+          <Link to="/client-bookings" className="flex p-3 rounded-md text-gray-700 hover:bg-gray-200"><SlCalender className="mr-2 w-[50px] h-[25px]"  /> <span className="hidden md:flex">My Bookings</span></Link>
+          <Link to="/client-profile" className="flex p-3 rounded-md text-gray-700 hover:bg-gray-200"><IoPersonSharp  className="mr-2 w-[50px] h-[25px]" /> <span className="hidden md:flex">Profile</span></Link>
+          <Link to="#" onClick={handleLogout} className="flex p-3 rounded-md text-gray-700 hover:bg-gray-200">
             <div className="flex items-center "><BsArrowReturnLeft className="mr-2 w-[50px] h-[25px]" /> <span className="hidden md:flex">Logout</span></div>
           </Link>
         </nav>
