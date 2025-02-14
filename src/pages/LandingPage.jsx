@@ -110,11 +110,11 @@ const LandingPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
           <div className="bg-[#29293f] p-6 rounded shadow">
             <h3 className="text-xl font-semibold">Business</h3>
-            <p className="mt-2 text-gray-400">Create a profile and start posting your booking items for other userd to see and book an appointment.</p>
+            <p className="mt-2 text-gray-400">Create a profile and start posting your booking items for other users to see and book an appointment.</p>
           </div>
           <div className="bg-[#29293f] p-6 rounded shadow">
             <h3 className="text-xl font-semibold">Client</h3>
-            <p className="mt-2 text-gray-400">Create profile and see all booking items available and book for he ones you need.</p>
+            <p className="mt-2 text-gray-400">Create profile and see all booking items available and book for the ones you need.</p>
           </div>
           <div className="bg-[#29293f] p-6 rounded shadow">
             <h3 className="text-xl font-semibold">🚀 Execute & Grow</h3>
@@ -147,8 +147,8 @@ const LandingPage = () => {
             <p className="text-gray-400">
               "The real-time analytics and payment integration helped me track revenue effortlessly. Best decision for my business!"
             </p>
-            <h3 className="mt-4 font-semibold text-pink-400">Akinola Nifemi</h3>
-            <p className="text-gray-500 text-sm">Founder, Glow Salon</p>
+            <h3 className="mt-4 font-semibold text-pink-400">Jumoke Ayo-akinse</h3>
+            <p className="text-gray-500 text-sm">Founder, Akins Salon</p>
           </div>
 
         </div>
