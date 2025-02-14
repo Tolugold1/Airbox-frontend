@@ -70,11 +70,11 @@ const LoginPage = () => {
       console.log('resultAction:', resultAction);
       if (resultAction.payload.status == 'Sign in successful' && resultAction.payload.statusCode == 200) {
         // Redirect based on the checkbox (isBusiness) value.
-        if (data.acctType == "Official" && acctType == "Official") {
-          navigate('/business-dashboard');
-        } else if ( data.acctType == "Client"  && acctType == "Client"){
-          navigate('/client-dashboard');
-        }
+        // if (data.acctType == "Official" && acctType == "Official") {
+        //   navigate('/business-dashboard');
+        // } else if ( data.acctType == "Client"  && acctType == "Client"){
+        //   navigate('/client-dashboard');
+        // }
       } else {
         // Handle errors (you could show a toast or error message here)
         console.error('Failed to login:', resultAction.error.message);
