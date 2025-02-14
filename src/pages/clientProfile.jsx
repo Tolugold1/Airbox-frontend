@@ -104,7 +104,7 @@ const ClientProfilePage = () => {
 
           {clientProfile && (
             <div className="mt-4 text-gray-700">
-              <p><strong>Full Name:</strong> {clientProfile.name}</p>
+              <p><strong>Full Name:</strong> {clientProfile.Fullname}</p>
               <p><strong>Email:</strong> {clientProfile.Email}</p>
               <p><strong>Phone Number:</strong> {clientProfile.Phone_number}</p>
               <p><strong>Address:</strong> {clientProfile.Address}</p>
