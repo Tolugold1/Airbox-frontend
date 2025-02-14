@@ -6,12 +6,14 @@ import { logout } from "../store/authSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { IoPersonSharp } from "react-icons/io5";
+import api from "../services/api";
 
 const BusinessSideBar = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     let path = window.location.pathname;
-    const onLogout = () => {
+    const onLogout = async () => {
+        await api.post("/api/auth/logout")
         navigate("/");
         dispatch(logout());
     }
