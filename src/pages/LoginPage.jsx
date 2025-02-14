@@ -14,7 +14,8 @@ import { clearBusinessBooking } from "../store/getBusinessBookings";
 import { clearBusinessBookingItem } from "../store/getBusinessBookingItems";
 import { clearAnalytics } from "../store/businessAnalytics";
 import { loginUserOAuth, clearOAuthMessage } from "../store/goggleOauth";
-
+import { logout } from "../store/authSlice";
+import { logoutGoogle } from "../store/goggleOauth";
 
 const LoginPage = () => {
   const {
@@ -31,6 +32,8 @@ const LoginPage = () => {
   const google = useSelector((state) => state.google);
 
   useEffect(() => {
+    dispatch(logout());
+    dispatch(logoutGoogle());
     dispatch(clearClientprofile());
     dispatch(clearClientBookingItem());
     dispatch(clearAnalytics());

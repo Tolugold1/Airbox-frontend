@@ -27,9 +27,12 @@ const googleAuthSlice = createSlice({
   name: 'google',
   initialState: { user: null, token: null, status: 'idle', error: null },
   reducers: {
-    logout: (state) => {
+    logoutGoogle: (state) => {
       state.user = null;
       state.token = null;
+      state.acctType = null;
+      state.profile_status = null;
+      state.status = "idle"
     },
     setAuthMessage: (state, action) => {
         state.successMessage = action.payload;
@@ -59,6 +62,6 @@ const googleAuthSlice = createSlice({
   }
 });
 
-export const { logout, setAuthMessage, clearOAuthMessage } = googleAuthSlice.actions;
+export const { logoutGoogle, setAuthMessage, clearOAuthMessage } = googleAuthSlice.actions;
 
 export default googleAuthSlice.reducer;
