@@ -113,13 +113,13 @@ const ClientDashboard = () => {
         {/* Header */}
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold">Dashboard</h1>
-          <input
+          {/* <input
             type="text"
             placeholder="Search for services..."
             className="p-2 border border-gray-300 rounded-md w-80"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-          />
+          /> */}
         </div>
 
         {/* Featured Booking Service */}

@@ -85,11 +85,19 @@ const ClientProfilePage = () => {
       <div className="w-20 md:w-64 bg-white p-6 shadow-lg">
         <h2 className="hidden sm:flex text-xl font-bold text-purple-600">Client Dashboard</h2>
         <nav className="mt-6">
-          <Link to="/client-dashboard" className="flex p-3 rounded-md text-gray-700 hover:bg-gray-200"><FaHome className="mr-2 w-[50px] h-[25px]"  /> <span className="hidden md:flex">Overview</span></Link>
-          <Link to="/client-bookings" className="flex p-3 rounded-md text-gray-700 hover:bg-gray-200"><SlCalender className="mr-2 w-[50px] h-[25px]"  /> <span className="hidden md:flex">My Bookings</span></Link>
-          <Link to="/client-profile" className="flex p-3 rounded-md text-gray-700 hover:bg-gray-200"><IoPersonSharp  className="mr-2 w-[50px] h-[25px]" /> <span className="hidden md:flex">Profile</span></Link>
-          <Link to="#" onClick={handleLogout} className="flex p-3 rounded-md text-gray-700 hover:bg-gray-200">
-            <div className="flex items-center "><BsArrowReturnLeft className="mr-2 w-[50px] h-[25px]" /> <span className="hidden md:flex">Logout</span></div>
+          <Link to="/client-dashboard" className="flex md:p-3 rounded-md text-gray-700 hover:bg-gray-200">
+            <div className="flex my-3 items-center"><FaHome className="m-0 md:mr-2 w-[50px] h-[25px]"  /> <span className="hidden md:flex">Overview</span></div>
+          </Link>
+          <Link to="/client-bookings" className="flex md:p-3 rounded-md text-gray-700 hover:bg-gray-200">
+          <div className="flex my-3 items-center">
+            <SlCalender className="mr-2 w-[50px] h-[25px]" /> <span className="hidden md:flex">My Bookings</span>
+            </div>
+          </Link>
+          <Link to="/client-profile" className="flex md:p-3 rounded-md text-gray-700 hover:bg-gray-200">
+          <div className="flex items-center my-3"><IoPersonSharp  className="mr-2 w-[50px] h-[25px]" /> <span className="hidden md:flex">Profile</span></div>
+          </Link>
+          <Link to="#" onClick={handleLogout} className="flex md:p-3 rounded-md text-gray-700 hover:bg-gray-200">
+            <div className="flex items-center my-3 "><BsArrowReturnLeft className="mr-0 md:mr-2 w-[50px] h-[25px]" /> <span className="hidden md:flex">Logout</span></div>
           </Link>
         </nav>
       </div>
