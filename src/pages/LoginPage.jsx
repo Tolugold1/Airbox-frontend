@@ -26,7 +26,7 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  let { acctType, error } = useSelector((state) => state.auth);
+  let { acctType, status, token, error } = useSelector((state) => state.auth);
   const [ acctTypeT, setAcctType ] = useState(null);
 
   const google = useSelector((state) => state.google);
@@ -41,6 +41,14 @@ const LoginPage = () => {
     dispatch(clearBusinessBooking());
     dispatch(clearBusinessprofile());
   }, []);
+
+  useEffect(() => {
+    if (acctType == "Official" && status == "Sign in successful" && token !== null) {
+      navigate('/business-dashboard');
+    } else if (acctType == "Client" && status == "Sign in successful" && token !== null) {
+      navigate('/client-dashboard');
+    }
+  }, [acctType, status, token]);
 
   console.log("error", error);
   useEffect(() => {
@@ -185,7 +193,7 @@ const LoginPage = () => {
         </form>
 
                 {/* Google Sign-In Button */}
-        <div className="mt-4">
+        {/* <div className="mt-4">
           <button
             onClick={handleGoogleSignIn}
             className="w-full flex items-center justify-center bg-white text-gray-700 py-2 rounded font-semibold hover:bg-gray-100 shadow-md transition"
@@ -193,7 +201,7 @@ const LoginPage = () => {
             <FcGoogle className="mr-2 text-2xl" />
             Sign in with Google
           </button>
-        </div>
+        </div> */}
 
         {/* Forgot Password */}
         <div className="mt-4 text-center">

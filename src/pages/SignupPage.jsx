@@ -142,14 +142,14 @@ const SignupPage = () => {
         </form>
 
         {/* Google Sign-Up Button */}
-        <div className="mt-4">
+        {/* <div className="mt-4">
           <button
             className="w-full flex items-center justify-center bg-white text-gray-700 py-2 rounded font-semibold hover:bg-gray-100 shadow-md transition"
           >
             <FcGoogle className="mr-2 text-2xl" />
             Sign up with Google
           </button>
-        </div>
+        </div> */}
 
         {/* Redirect to Login */}
         <p className="text-gray-400 text-sm text-center mt-4">
