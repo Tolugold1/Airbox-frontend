@@ -5,7 +5,7 @@ import api from '../services/api';
 
 // Async thunk for logging in the user
 export const createBusinessProfile = createAsyncThunk(
-  'get/businessProfile',
+  'create/businessProfile',
   async (credentials, thunkAPI) => {
     try {
         // Adjust the API endpoint as needed.
@@ -23,8 +23,14 @@ const createBusinessProfileSlice = createSlice({
   name: 'create-business-profile',
   initialState: { createProfileBusiness: null, status: 'idle', createProfileBusinessError: null },
   reducers: {
-    setProfile: (state, action) => {
-        state.clientProfile = action.payload;
+    cleanBusinessCreation: (state) => {
+      state.status = 'loading';
+      state.createProfileBusiness = null;
+      state.createProfileBusinessError = null;
+    },
+    setBusinessProfile: (state, action) => {
+      state.status = 'succeeded';
+      state.createProfileBusiness = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -43,5 +49,6 @@ const createBusinessProfileSlice = createSlice({
   }
 });
 
+export const { cleanBusinessCreation, setBusinessProfile } = createBusinessProfileSlice.actions;
 
 export default createBusinessProfileSlice.reducer;

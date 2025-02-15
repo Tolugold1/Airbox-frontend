@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createBusinessProfile } from "../store/createBusinessProfile";
+import { createBusinessProfile, cleanBusinessCreation } from "../store/createBusinessProfile";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { getBusinessProfile } from '../store/getBusinessProfile';
+import { getBusinessProfile, setBusinessprofile } from '../store/getBusinessProfile';
 import { FaUserCircle, FaStar, FaBookmark } from 'react-icons/fa';
 import { RiMessage2Fill } from "react-icons/ri";
 
@@ -12,7 +12,7 @@ const BusinessProfilePage = () => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const { register, handleSubmit, reset } = useForm();
-
+  let { createProfileBusinessError } = useSelector((state) => state.createBusinessProfile)
   let { businessProfile, status, businessProfileError } = useSelector((state) => state.getBusinessProfile);
 
   let { items, itemsError } = useSelector((state) => state.getBusinessBookingItem);
@@ -23,6 +23,14 @@ const BusinessProfilePage = () => {
     dispatch(getBusinessProfile());
   }, [dispatch]);
 
+  
+  // useEffect(() => {
+  //   toast.error(createProfileBusinessError, {
+  //     position: "top-center"
+  //   });
+  //   dispatch(cleanBusinessCreation());
+  // }, [createProfileBusinessError]);
+
   useEffect(() => {
     if (!businessProfile && status !== "loading") {
       setShowModal(true);
@@ -32,11 +40,16 @@ const BusinessProfilePage = () => {
   const onSubmit = async (data) => {
     try {
       const result = await dispatch(createBusinessProfile(data));
+      console.log("result", result);
       if (createBusinessProfile.fulfilled.match(result)) {
+        dispatch(setBusinessprofile(result.payload.Profile));
         toast.success("Profile Created Successfully!");
         setShowModal(false);
       } else {
-        toast.error("Failed to create profile!");
+        toast.error(result.payload, {
+          position: "top-center"
+        });
+        dispatch(cleanBusinessCreation());
       }
     } catch (error) {
       toast.error("An error occurred!");
@@ -148,6 +161,7 @@ const BusinessProfilePage = () => {
             </div>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 };

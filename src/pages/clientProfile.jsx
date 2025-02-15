@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearClientprofile, updateProfile } from "../store/getClientProfile";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { createClientProfile } from "../store/createClientProfile";
+import { createClientProfile, setClientProfile } from "../store/createClientProfile";
 import { getClientProfile } from "../store/getClientProfile";
 import api from "../services/api";
 import { BsArrowReturnLeft } from "react-icons/bs";
@@ -47,12 +47,13 @@ const ClientProfilePage = () => {
         if (!clientProfile) {
             response = await dispatch(createClientProfile(formData));
         } else {
-            response = await api.put("/api/client/update-profile", formData);
+          response = await api.put("/api/client/update-profile", formData);
         }
-        
+        console.log("response", response);
         if (response.data.data !== null) {
+          dispatch(setClientProfile(response.data.data))
           // redirect to profile page
-          toast("Please complete your profile to continue.", {
+          toast("Profile created successfully.", {
             position: "top-center",
           });
           setFormData({

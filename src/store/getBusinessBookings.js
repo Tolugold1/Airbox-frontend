@@ -28,7 +28,7 @@ const getBusinessBookingSlice = createSlice({
         state.status = "idle";
         state.businessBookingsError = null;
     },
-    setBusinessBooking: (state) => {
+    setBusinessBooking: (state, action) => {
       state.businessBookings = action.payload;
     }
   },

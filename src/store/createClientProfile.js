@@ -26,6 +26,10 @@ const createClientProfileSlice = createSlice({
     // updateProfile: (state, action) => {
     //     state.clientProfile = action.payload;
     // }
+    setClientProfile: (state, action) => {
+      state.status = 'succeeded';
+      state.createProfileClient = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -43,6 +47,6 @@ const createClientProfileSlice = createSlice({
   }
 });
 
-// export const { updateProfile } = createClientProfileSlice.actions;
+export const { updateProfile, setClientProfile } = createClientProfileSlice.actions;
 
 export default createClientProfileSlice.reducer;

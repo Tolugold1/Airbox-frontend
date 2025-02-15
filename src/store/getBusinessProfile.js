@@ -28,6 +28,10 @@ const getBusinessProfileSlice = createSlice({
         state.status = "idle";
         state.businessProfileError = null;
     },
+    setBusinessprofile: (state, action) => {
+      state.status = 'succeeded';
+      state.businessProfile = action.payload;
+  },
   },
   extraReducers: (builder) => {
     builder
@@ -45,6 +49,6 @@ const getBusinessProfileSlice = createSlice({
   }
 });
 
-export const { clearBusinessprofile } = getBusinessProfileSlice.actions;
+export const { clearBusinessprofile, setBusinessprofile } = getBusinessProfileSlice.actions;
 
 export default getBusinessProfileSlice.reducer;

@@ -37,7 +37,7 @@ const ClientDashboard = () => {
     const getprofile = async () => {
       let profile = await dispatch(getClientProfile());
       console.log("Profile", profile);
-      if (profile.payload == null) {
+      if (profile.payload == null || profile.payload == "Profile not found") {
         // redirect to profile page
         toast("Please complete your profile to continue.", {
           position: "top-center",
@@ -50,13 +50,17 @@ const ClientDashboard = () => {
   }, [dispatch]);
 
   const handleBookingClick = (service) => {
-    setBookingData({
-      ...bookingData,
-      businessId: service.businessId,
-      bookedItemId: service._id,
-      clientProfileId: clientProfile._id,
-    });
-    setShowModal(true);
+    if (clientProfile !==null) {
+      setBookingData({
+        ...bookingData,
+        businessId: service.businessId,
+        bookedItemId: service?._id,
+        clientProfileId: clientProfile?._id,
+      });
+      setShowModal(true);
+    } else {
+
+    }
   };
 
   const handleChange = (e) => {
