@@ -320,10 +320,10 @@ const BusinessDashboard = () => {
               {businessBooking?.map(booking => {
                 return (
                   <tr className="border-b border-gray-200 hover:bg-gray-100">
-                    <td className="py-3 px-6 text-left">{booking.clientProfileId.Fullname}</td>
-                    <td className="py-3 px-6 text-left">{formatData(booking.appointmentDate)}</td>
-                    <td className="py-3 px-6 text-left text-green-500">{booking.status}</td>
-                    <td className="py-3 px-6 text-left">{booking.bookedItemId.name}</td>
+                    <td className="py-3 px-6 text-left">{booking.clientProfileId?.Fullname}</td>
+                    <td className="py-3 px-6 text-left">{formatData(booking?.appointmentDate)}</td>
+                    <td className="py-3 px-6 text-left text-green-500">{booking?.status}</td>
+                    <td className="py-3 px-6 text-left">{booking.bookedItemId?.name}</td>
                     <td className="py-3 px-6 text-left" onClick={() => onEditBooking(booking)}><AiFillEdit /></td>
                     {/* <td className="py-3 px-6 text-left">{booking.paymentMethod}</td> */}
                   </tr>
