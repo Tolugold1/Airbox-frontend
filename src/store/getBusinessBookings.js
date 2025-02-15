@@ -28,6 +28,9 @@ const getBusinessBookingSlice = createSlice({
         state.status = "idle";
         state.businessBookingsError = null;
     },
+    setBusinessBooking: (state) => {
+      state.businessBookings = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -45,6 +48,6 @@ const getBusinessBookingSlice = createSlice({
   }
 });
 
-export const { clearBusinessBooking } = getBusinessBookingSlice.actions;
+export const { clearBusinessBooking, setBusinessBooking } = getBusinessBookingSlice.actions;
 
 export default getBusinessBookingSlice.reducer;

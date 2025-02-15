@@ -11,11 +11,12 @@ import BusinessSideBar from './businessSideBar';
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, LineElement, PointElement);
 import { ToastContainer, toast } from 'react-toastify';
 import { getBusinessProfile } from '../store/getBusinessProfile';
-import { getBusinessBooking } from '../store/getBusinessBookings';
+import { getBusinessBooking, setBusinessBooking } from '../store/getBusinessBookings';
 import { getBusinessAnalytics } from '../store/businessAnalytics';
 // import { getBusinessAnalytics } from '../store/';
 import { useDispatch, useSelector } from 'react-redux';
 import { MdArrowDropDown } from "react-icons/md";
+import { AiFillEdit } from "react-icons/ai";
 
 const BusinessDashboard = () => {
   let dispatch = useDispatch();
@@ -23,6 +24,7 @@ const BusinessDashboard = () => {
   const [bookableItems, setBookableItems] = useState([]);
   const [analytics, setAnalytics] = useState([]);
   const { register, handleSubmit, reset } = useForm();
+  const [ edit, setEdit ] = useState(false);
 
   let { businessProfile, status, businessProfileError } = useSelector((state) => state.getBusinessProfile);
   const [period, setPeriod] = useState("Daily"); // Default selection
@@ -30,6 +32,10 @@ const BusinessDashboard = () => {
   const [ schedule, setSchedule ] = useState(0);
   const [ cancel, setCancel ] = useState(0);
   const [ complete, setComplete ] = useState(0);
+  const [bookings, setBookings] = useState({
+    status: "",
+    bookingId: "",
+  });
 
 
   const handleSelect = (value) => {
@@ -80,13 +86,10 @@ const BusinessDashboard = () => {
         dispatch(getBusinessBooking(businessProfile?._id)), 
         dispatch(getBusinessAnalytics({businessId: businessProfile?._id, timeframe: period}))
       ]);
-      console.log("bookableItems", itemsResponse);
       setBookableItems(itemsResponse.data);
   
       // const analyticsResponse = await dispatch(getBusinessAnalytics({businessId: businessProfile?._id, timeframe: period}));
       setAnalytics(analyticsResponse.payload.formattedData);
-
-      console.log("analyticsStore", analyticsStore);
   
       setSchedule(analyticsResponse.payload.overallAnalytics?.TotalScheduledBooking);
   
@@ -100,15 +103,30 @@ const BusinessDashboard = () => {
   }, [businessProfile]);
 
   // Handler to add a new bookable item
-  const onAddItem = async (data) => {
+  const onEditBooking = async (data) => {
     try {
-      const response = await api.post('/api/booking/create-bookin-item', data);
-      setBookableItems([...bookableItems, response.data]);
-      reset();
+      setEdit(true)
+      setBookings({ bookingId: data._id, status: "cancelled" });
     } catch (error) {
       console.error('Error adding item:', error);
     }
   };
+
+  const handleChange = (e) => {
+    setBookings({ ...bookings, [e.target.name]: e.target.value });
+  };
+
+  const EditBookingSchedule = async () => {
+    try {
+      let update = await api.post("/api/booking/update-booking-by-business", bookings);
+      console.log("update", update);
+      if (update.data.data !== null && update.data.data.length > 0) {
+        dispatch(setBusinessBooking(update.data.data));
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
 
   const barChartRef = useRef(null);
   const lineChartRef  = useRef(null);
@@ -294,6 +312,7 @@ const BusinessDashboard = () => {
                 <th className="py-3 px-6 text-left">Appointment date</th>
                 <th className="py-3 px-6 text-left">Status</th>
                 <th className="py-3 px-6 text-left">Service Name</th>
+                <th className="py-3 px-6 text-left">Edit Booking</th>
                 {/* <th className="py-3 px-6 text-left">Payment Method</th> */}
               </tr>
             </thead>
@@ -305,12 +324,58 @@ const BusinessDashboard = () => {
                     <td className="py-3 px-6 text-left">{formatData(booking.appointmentDate)}</td>
                     <td className="py-3 px-6 text-left text-green-500">{booking.status}</td>
                     <td className="py-3 px-6 text-left">{booking.bookedItemId.name}</td>
+                    <td className="py-3 px-6 text-left" onClick={() => onEditBooking(booking)}><AiFillEdit /></td>
                     {/* <td className="py-3 px-6 text-left">{booking.paymentMethod}</td> */}
                   </tr>
                 );
               })}
             </tbody>
           </table>
+
+          {edit && (
+            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto">
+            <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+              <h2 className="text-xl font-bold text-gray-700 mb-4">Book Service</h2>
+              <form onSubmit={EditBookingSchedule} className="space-y-4">
+                <input type="hidden" name="bookedItemId" value={bookings.bookingId} />
+  
+                <label className="block text-gray-700">Booking Status:</label>
+                <select
+                  name="status"
+                  // value="cancelled"
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded"
+                  required
+                >
+                  <option value="cancelled">Cancelled</option>
+                  <option value="completed">Completed</option>
+                </select>
+  {/* 
+                <label className="block text-gray-700">Appointment Date:</label>
+                <input
+                  type="date"
+                  name="appointmentDate"
+                  className="w-full p-2 border border-gray-300 rounded"
+                  onChange={handleChange}
+                  required
+                /> */}
+  
+                <button
+                  type="submit"
+                  className="w-full bg-pink-500 py-2 rounded-md text-white hover:bg-pink-700"
+                >
+                  Confirm Booking
+                </button>
+              </form>
+              <button
+                onClick={() => setEdit(false)}
+                className="w-full mt-2 bg-gray-500 py-2 rounded-md text-white hover:bg-gray-600"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+          )}
         </div>
       </main>
       <ToastContainer />

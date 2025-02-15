@@ -5,11 +5,11 @@ import api from '../services/api';
 
 // Async thunk for logging in the user
 export const getBusinessAnalytics = createAsyncThunk(
-  'create/bookingItem',
+  'get/business/analytics',
   async (credentials, thunkAPI) => {
     try {
         // Adjust the API endpoint as needed.
-        const response = await axios.get(`/api/businessAnalytics/get-analytics/${credentials.businessId}/${credentials.timeframe}`, her);
+        const response = await api.get(`/api/businessAnalytics/get-analytics/${credentials.businessId}/${credentials.timeframe}`);
         // Assume your backend returns an object with { user, token }
         return response.data.data;
     } catch (error) {

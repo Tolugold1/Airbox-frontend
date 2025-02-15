@@ -13,6 +13,7 @@ import ClientProfilePage from "./pages/clientProfile";
 import BusinessHOC from './layout/businessHOC';
 import BusinessProfilePage from "./pages/businessProfile";
 import HistoryPage from "./pages/clientHistory";
+import ResetPasswordPage from "./pages/ResetPassword"
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/reset" element={<ResetPasswordPage />} />
 
         {/* Protected Routes */}
         <Route element={<BusinessHOC />}>

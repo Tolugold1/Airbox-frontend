@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 // import image from '../assets/image.jpg';
-import  heroImage from '../assets/online-ticket-booking.jpg';
+import  heroImage from '../assets/online-ticket-booking-min.jpg';
 import { FiMenu, FiX } from "react-icons/fi";
 
 const LandingPage = () => {
