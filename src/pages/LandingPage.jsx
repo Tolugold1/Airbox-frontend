@@ -159,8 +159,8 @@ const LandingPage = () => {
         <h2 className="text-2xl font-bold text-pink-500">Schedulo</h2>
         <p className="mt-2 text-gray-400">Effortless Booking, Anytime, Anywhere!</p>
         <div className="mt-4 space-x-4">
-          <Link to="/privacy-policy" className="hover:text-pink-400">Privacy Policy</Link>
-          <Link to="/terms" className="hover:text-pink-400">Terms of Use</Link>
+          <Link to="#" className="hover:text-pink-400">Privacy Policy</Link>
+          <Link to="#" className="hover:text-pink-400">Terms of Use</Link>
         </div>
         <p className="mt-4 text-gray-500">© 2025 Schedulo. All Rights Reserved.</p>
       </footer>
