@@ -228,14 +228,14 @@ const BusinessDashboard = () => {
   }
   
   return (
-    <div className="flex min-h-screen bg-gray-100 w-full">
+    <div className="flex min-h-screen w-full">
       {/* Sidebar */}
       {/* <div className=''>
         <BusinessSideBar />
       </div> */}
 
       {/* Main Dashboard */}
-      <main className="flex-1 p-6">
+      <main className="flex-1 p-6 bg-gray-100">
         {/* Top Stats */}
         <div className="grid grid-cols-4 gap-4">
           <div className="p-4 bg-white shadow rounded-lg">
@@ -288,7 +288,7 @@ const BusinessDashboard = () => {
         </div>
 
         {/* Charts */}
-        <div className="grid grid-cols-3 gap-6 mt-6">
+        <div className="grid vsm:grid-col-2 md:grid-cols-4 gap-6 mt-6">
           {/* Weekly Bookings */}
           <div className="bg-white shadow rounded-lg p-6 col-span-2">
             <h3 className="text-lg font-bold text-gray-700">This Week Booking</h3>
@@ -296,7 +296,7 @@ const BusinessDashboard = () => {
           </div>
 
           {/* Analytics */}
-          <div className="bg-white shadow rounded-lg p-6">
+          <div className="bg-white shadow rounded-lg p-6 col-span-2">
             <h3 className="text-lg font-bold text-gray-700">Analytics</h3>
             <Line ref={lineChartRef} key={JSON.stringify(lineChartData)} data={lineChartData} />
           </div>

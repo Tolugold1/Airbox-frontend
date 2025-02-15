@@ -41,8 +41,8 @@ const ResetPasswordPage = () => {
     <div className="min-h-screen flex items-center justify-center bg-[#1a1a2e] p-4">
 
        {/* Back to Home Button */}
-       <Link to="/" className="absolute top-4 left-4 text-gray-400 hover:text-pink-400 flex items-center">
-          <FiArrowLeft className="mr-2" /> Home
+       <Link to="/login" className="absolute top-4 left-4 text-gray-400 hover:text-pink-400 flex items-center">
+          <FiArrowLeft className="mr-2" /> Login
         </Link>
       <div className="bg-[#29293f] p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold text-white text-center">Sign In</h2>

@@ -4,7 +4,7 @@ import BusinessSideBar from '../pages/businessSideBar';
 
 const BusinessHOC = () => {
   return (
-    <div className='flex flex-row min-h-screen w-full'>
+    <div className='flex min-h-screen w-full'>
         <BusinessSideBar />
         <Outlet />
     </div>
